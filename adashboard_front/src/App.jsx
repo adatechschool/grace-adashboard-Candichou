@@ -5,6 +5,7 @@ import "./App.css";
 
 function App() {
   const [value, setValue] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     async function loadData() {
@@ -21,8 +22,28 @@ function App() {
     });
     setValue((event) => event.filter((elem) => elem.id !== id));
   };
+
   return (
     <>
+      <button onClick={() => setOpenModal(true)}> AJOUTER THEMES</button>
+      {openModal && (
+        <div onClick={() => setOpenModal(false)}>
+          <div
+            onClick={(e) => {
+              if (e.target === e.currentTarget) closeModal();
+            }}
+          >
+            <h2 style={{ color: "red" }}>Créer un thème</h2>
+
+            <input placeholder="Nom du thème" />
+
+            <div>
+              <button onClick={() => setOpenModal(false)}>Fermer</button>
+              <button>Valider</button>
+            </div>
+          </div>
+        </div>
+      )}
       <div>
         <TitresThemes value={value} removeThemes={removeThemes} />
       </div>
