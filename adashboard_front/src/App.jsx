@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { TitresThemes } from "./components/TitresThemes";
+import Modal from "./components/Modal";
 
 import "./App.css";
 
@@ -25,26 +26,9 @@ function App() {
 
   return (
     <>
-      <button onClick={() => setOpenModal(true)}> AJOUTER THEMES</button>
-      {openModal && (
-        <div onClick={() => setOpenModal(false)}>
-          <div
-            onClick={(e) => {
-              if (e.target === e.currentTarget) closeModal();
-            }}
-          >
-            <h2 style={{ color: "red" }}>Créer un thème</h2>
-
-            <input placeholder="Nom du thème" />
-
-            <div>
-              <button onClick={() => setOpenModal(false)}>Fermer</button>
-              <button>Valider</button>
-            </div>
-          </div>
-        </div>
-      )}
       <div>
+        <button onClick={() => setOpenModal(true)}> AJOUTER THEMES</button>
+        {openModal && <Modal />}
         <TitresThemes value={value} removeThemes={removeThemes} />
       </div>
     </>

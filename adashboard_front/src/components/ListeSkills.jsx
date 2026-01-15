@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export const ListeSkills = ({ elem }) => {
   const [valid, setValid] = useState(elem.skills);
+
   const loadingStatus = async (id, index, status) => {
     await fetch(
       `http://localhost:3000/themes/${id}/skills/${index}/${status}`,
